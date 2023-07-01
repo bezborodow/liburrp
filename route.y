@@ -16,16 +16,19 @@ int pos=0;
     char *string;
 }
 %token DIGIT
-%token <string> WORD
+%token CONV_STRING "string"
 %left '/'
 %%
 
-start: '/' parts '\n'		{exit(1);}
+start: '/' parts '\n'        {exit(1);}
      ;
 
 parts: parts '/' part
      | part
-part: characters
+     ;
+
+part: variable
+    | characters
     ;
 
 characters: characters character
@@ -34,8 +37,21 @@ characters: characters character
 
 character: DIGIT
          | 'a'
-         | 'b'
          ;
+
+variable: '<' converter ':' varname '>'
+        | '<' varname '>'
+        ;
+
+converter: 's' 't' 'r' 'i' 'n' 'g'
+         | 'i' 'n' 't'
+         | 'f' 'l' 'o' 'a' 't'
+         | 'p' 'a' 't' 'h'
+         | 'u' 'u' 'i' 'd'
+         ;
+
+varname: characters
+       ;
 %%
 
 
@@ -66,6 +82,6 @@ yylex(){
 
 main()
 {
-	yyparse();
-	return 1;
+    yyparse();
+    return 1;
 }
