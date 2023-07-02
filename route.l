@@ -19,11 +19,9 @@ URIUNRESERVED [a-zA-Z0-9,._~-]
 ">" { return RANGLE; }
 ":" { return SEMICOLON; }
 {PYIDENTSTART}{PYIDENTCONT}+ {
-    yylval.pyid = strdup(yytext);
     return PYIDENT;
 }
 {URIUNRESERVED}+ {
-    yylval.uri = strdup(yytext);
     return URIUNRESERVED;
 }
 
