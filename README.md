@@ -4,3 +4,4 @@
 
 * [Python Lexical Analysis](https://docs.python.org/3/reference/lexical_analysis.html)
 * [Write text parsers with yacc and lex - IBM](https://developer.ibm.com/tutorials/au-lexyacc/)
+* [Flask URL Route Registrations](https://flask.palletsprojects.com/en/latest/api/#url-route-registrations)

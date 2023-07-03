@@ -9,11 +9,15 @@ URIUNRESERVED [,.~-]
 
 %% 
 
-"int" { return INT; }
-"string" { return STRING; }
-"float" { return FLOAT; }
-"path" { return PATH; }
-"uuid" { return UUID; }
+{ALPHA} { return ALPHA; }
+{DIGIT} { return DIGIT; }
+{URIUNRESERVED} { return URIUNRESERVED; }
+"string:" { return STRING; }
+"int:" { return INT; }
+"float:" { return FLOAT; }
+"path:" { return PATH; }
+"any:" { return ANY; }
+"uuid:" { return UUID; }
 "/" { return SLASH; }
 "<" { return LANGLE; }
 ">" { return RANGLE; }

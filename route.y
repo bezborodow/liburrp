@@ -5,7 +5,7 @@
 
 
 %token ALPHA, DIGIT, URIUNRESERVED
-%token INT, STRING, FLOAT, PATH, UUID
+%token STRING, INT, FLOAT, PATH, ANY, UUID
 %token LANGLE, SEMICOLON, RANGLE
 %token SLASH
 
@@ -31,16 +31,18 @@ uripart: uripart uripartchars
 uripartchars: ALPHA
             | DIGIT
             | URIUNRESERVED
+            ;
 
 
-variable: LANGLE varname RANGLE
-        | LANGLE converter SEMICOLON varname RANGLE
+variable: LANGLE converter varname RANGLE
+        | LANGLE varname RANGLE
         ;
 
 converter: STRING
-         | FLOAT
          | INT
+         | FLOAT
          | PATH
+         | ANY
          | UUID
          ;
 
