@@ -28,3 +28,12 @@ URIUNRESERVED [,.~-]
 }
 
 %%
+
+/*
+ * Function yywrap is called by lex when input is exhausted. Return 1 if you
+ * are done, or 0 if more processing is required.
+ */
+int yywrap(void)
+{
+    return 1;
+}
