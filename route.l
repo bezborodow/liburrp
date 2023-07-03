@@ -3,9 +3,9 @@
 #include "y.tab.h"
 %}
 
-PYIDENTSTART [a-zA-Z_]
-PYIDENTCONT [a-zA-Z0-9_]
-URIUNRESERVED [a-zA-Z0-9,._~-]
+ALPHA [a-zA-Z_]
+DIGIT [0-9]
+URIUNRESERVED [,.~-]
 
 %% 
 
@@ -13,16 +13,10 @@ URIUNRESERVED [a-zA-Z0-9,._~-]
 "string" { return STRING; }
 "float" { return FLOAT; }
 "path" { return PATH; }
-"uuid" { return UIID; }
+"uuid" { return UUID; }
 "/" { return SLASH; }
 "<" { return LANGLE; }
 ">" { return RANGLE; }
 ":" { return SEMICOLON; }
-{PYIDENTSTART}{PYIDENTCONT}+ {
-    return PYIDENT;
-}
-{URIUNRESERVED}+ {
-    return URIUNRESERVED;
-}
 
 %%

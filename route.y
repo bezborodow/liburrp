@@ -4,17 +4,57 @@
 %}
 
 
-%token URIUNRESERVED
-%token PYIDENT
-%token INT, STRING, FLOAT, PATH, UIID
+%token ALPHA, DIGIT, URIUNRESERVED
+%token INT, STRING, FLOAT, PATH, UUID
 %token LANGLE, SEMICOLON, RANGLE
 %token SLASH
-%token START
 
 %%
 
-start: SLASH
+start: SLASH parts { exit(0); }
+     | SLASH
      ;
+
+parts: parts part
+     | part
+     ;
+
+part: uripart
+    | SLASH
+    | variable
+    ;
+
+uripart: uripart uripartchars
+       | uripartchars
+       ;
+
+uripartchars: ALPHA
+            | DIGIT
+            | URIUNRESERVED
+
+
+variable: LANGLE varname RANGLE
+        | LANGLE converter SEMICOLON varname RANGLE
+        ;
+
+converter: STRING
+         | FLOAT
+         | INT
+         | PATH
+         | UUID
+         ;
+
+varname: ALPHA pyidentcont
+       | ALPHA
+       ;
+
+pyidentcont: pyidentcont pyidchars
+           | pyidchars
+           ;
+
+pyidchars: ALPHA
+         | DIGIT
+         ;
 
 %%
 
@@ -26,4 +66,5 @@ void yyerror(char *error)
 int main(int argc, char **argv)
 {
     yyparse();
+    return 0;
 }
