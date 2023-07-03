@@ -22,5 +22,9 @@ URIUNRESERVED [,.~-]
 "<" { return LANGLE; }
 ">" { return RANGLE; }
 ":" { return SEMICOLON; }
+. {
+    fprintf(stderr, "Error: Unexpected character: %c\n", *yytext);
+    exit(1);
+}
 
 %%

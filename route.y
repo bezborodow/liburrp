@@ -32,7 +32,6 @@ uripartchars: ALPHA
             | URIUNRESERVED
             ;
 
-
 variable: LANGLE converter varname RANGLE
         | LANGLE varname RANGLE
         ;
