@@ -24,8 +24,7 @@ part: uripart
     | variable
     ;
 
-uripart: uripart uripartchars
-       | uripartchars
+uripart: uripartchars
        ;
 
 uripartchars: ALPHA
