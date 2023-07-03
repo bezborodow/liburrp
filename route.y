@@ -20,9 +20,11 @@ parts: parts part
      ;
 
 part: uripart
-    | SLASH
+    | slash
     | variable
     ;
+
+slash: SLASH { printf("Slash.\n"); }
 
 uripart: uripartchars
        ;
